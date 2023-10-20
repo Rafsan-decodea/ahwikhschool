@@ -22,6 +22,7 @@
             <button style="color: white;" type="submit">Login</button>
         </form>
         <br>
+
         <input class="btn btn-primary" id="registernew" type="button" value="Register For New Users"/>
     </div>
     <div class="register-container">
