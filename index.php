@@ -22,7 +22,6 @@
             <button style="color: white;" type="submit">Login</button>
         </form>
         <br>
-
         <input class="btn btn-primary" id="registernew" type="button" value="Register For New Users"/>
     </div>
     <div class="register-container">
@@ -40,7 +39,7 @@
             <button style="background-color: #007BFF; color: white;" type="submit">Register</button>
         </form>
         <br>
-        <input class="btn btn-primary" id="login" type="button" value="loginnnn"/>
+        <input class="btn btn-primary" id="login" type="button" value="login"/>
     </div>
 </body>
 </html>
