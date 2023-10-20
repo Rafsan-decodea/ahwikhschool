@@ -1,4 +1,8 @@
-
+<?php
+//ini_set('display_errors', 1);
+include 'route/function.php';
+$routes = include 'route/routes.php';
+?>
 
 <!DOCTYPE html>
 <html>
@@ -10,16 +14,19 @@
 <body>
     <div class="login-container">
         <h2>User Login</h2>
-        <form action="login.php" method="post">
+        <form action="<?php run('/authuser', $routes);?>" method="post">
             <div class="input-container">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
+            <label for="phoneNumber">Phone Number (Bangladesh):</label><br>
+            <input type="number" id="phoneNumber" name="phonenumber" placeholder="01XXXXXXXXX" required pattern="01\d{9}">
             </div>
             <div class="input-container">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            <button style="color: white;" type="submit">Login</button>
+            <a style="color:red"><?php echo htmlspecialchars($_GET["message"], ENT_QUOTES, 'UTF-8'); ?></a>
+            <br>
+            <button style="color: white;" value="submit" type="submit">Login</button>
+
         </form>
         <br>
         <input class="btn btn-primary" id="registernew" type="button" value="Register For New Users"/>
