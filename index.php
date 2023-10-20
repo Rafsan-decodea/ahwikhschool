@@ -39,7 +39,7 @@
             <button style="background-color: #007BFF; color: white;" type="submit">Register</button>
         </form>
         <br>
-        <input class="btn btn-primary" id="login" type="button" value="login"/>
+        <input class="btn btn-primary" id="login" type="button" value="loginnnn"/>
     </div>
 </body>
 </html>
