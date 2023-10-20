@@ -4,7 +4,7 @@
 <!--Main Navigation-->
 <header>
   <!-- Sidebar -->
-  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-green">
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
         <a
@@ -68,7 +68,7 @@
       <!-- Brand -->
       <a class="navbar-brand" href="#">
         <img
-          src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
+          src="https://static.vecteezy.com/system/resources/previews/009/273/280/non_2x/concept-of-loneliness-and-disappointment-in-love-sad-man-sitting-element-of-the-picture-is-decorated-by-nasa-free-photo.jpg"
           height="25"
           alt="User Profile"
           loading="lazy"
