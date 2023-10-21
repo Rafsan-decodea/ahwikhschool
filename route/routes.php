@@ -10,6 +10,9 @@ return [
         echo $index;
 
     },
+    '/regfail' => function () {
+        header("location:/ahwikhschool/index.php?regmessage=User Exist ");
+    },
     '/regdone' => function () {
         header("location:/ahwikhschool/index.php?regmessage=Registration Complete Now Login");
 

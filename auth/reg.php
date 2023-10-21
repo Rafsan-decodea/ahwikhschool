@@ -6,18 +6,28 @@ session_start();
 include_once '../route/function.php';
 $routes = include_once '../route/routes.php';
 run('/db', $routes);
+$db = new DB();
+$chkphone = $_POST["phoneNumber"];
+$sql = "SELECT * from users where phone = $chkphone ";
+echo $sql;
+$result = $db->query($sql);
+if ($result->num_rows > 0) {
 
-if (isset($_POST["submit"])) {
-    $db = new DB();
-    $uid = 1;
-    $phone = $_POST["phoneNumber"];
-    $password = $_POST["password"];
-    $name = $_POST["name"];
+    run('/regfail', $routes);
+} else {
+    if (isset($_POST["submit"])) {
 
-    $sql = "INSERT INTO  users(uid,phone,password,name) values ($uid,'$phone','$password','$name') ";
+        $uid = 1;
+        $phone = $_POST["phoneNumber"];
+        $password = $_POST["password"];
+        $name = $_POST["name"];
 
-    $db->insert($sql);
+        $sql = "INSERT INTO  users(uid,phone,password,name) values ($uid,'$phone','$password','$name') ";
 
-    run('/regdone', $routes);
+        $db->insert($sql);
+
+        run('/regdone', $routes);
+
+    }
 
 }

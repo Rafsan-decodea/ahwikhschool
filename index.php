@@ -1,7 +1,12 @@
 <?php
+session_start();
 //ini_set('display_errors', 1);
 include 'route/function.php';
 $routes = include 'route/routes.php';
+if (isset($_SESSION["id"])) {
+    run("/deshboard", $routes);
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -37,18 +42,23 @@ $routes = include 'route/routes.php';
         <br>
         <form action="<?php run('/reg', $routes);?>" method="post">
             <div class="input-container">
-                <label for="phoneNumber">Phone Number (Bangladesh):</label>
+                <label for="phoneNumber">Phone Number (Bangladesh):</label><br>
                 <input type="number" id="phoneNumber" name="phoneNumber" placeholder="01XXXXXXXXX" required pattern="01\d{9}">
             </div>
-            <div class="input-container">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
+            <label for="Password"> Password:</label>
+                <input type="password" id="thepassword"  onkeyup="checkPasswordMatch()" />
+                    <br />
+                    <label for="confirmPassword">Confirm Password:</label>
+                    <input type="password" id="confirmPassword" name="password" onkeyup="checkPasswordMatch()" />
+                    <br />
+                    <p id="message"></p>
+                    <input type="checkbox" id="showPassword" onchange="togglePasswordVisibility()" />
+                    <label for="showPassword">Show Password</label>
             <div class="input-container">
                 <label for="name">Your Name:</label>
                 <input type="text" id="name" name="name" required>
             </div>
-            <button style="background-color: #007BFF; color: white;" name="submit" type="submit">Register</button>
+          <center>  <button style="background-color: #007BFF; color: white;" name="submit" id="submitButton"  type="submit">Register</button></center>
         </form>
         <br>
         <input class="btn btn-primary" id="login" type="button"  value="login"/>
@@ -57,3 +67,36 @@ $routes = include 'route/routes.php';
 </html>
 
 <script src="script.js"></script>
+
+<script>
+        function checkPasswordMatch() {
+            var password = document.getElementById("thepassword").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+            var message = document.getElementById("message");
+            var submitButton = document.getElementById("submitButton");
+
+            if (password == confirmPassword && password !='' && confirmPassword !='' ) {
+                message.innerHTML = "Passwords match!";
+                message.style.color = "green";
+                submitButton.style.display = "block"; // Show the submit button
+            } else {
+                message.innerHTML = "Passwords do not match";
+                message.style.color = "red";
+                submitButton.style.display = "none"; // Hide the submit button
+            }
+        }
+
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("thepassword");
+            var confirmPasswordInput = document.getElementById("confirmPassword");
+            var showPasswordCheckbox = document.getElementById("showPassword");
+
+            if (showPasswordCheckbox.checked) {
+                passwordInput.type = "text";
+                confirmPasswordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+                confirmPasswordInput.type = "password";
+            }
+        }
+    </script>

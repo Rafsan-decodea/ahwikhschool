@@ -16,7 +16,7 @@
         >
           <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Registration Form</span>
         </a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple active">
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple ">
           <i class="fas fa-chart-area fa-fw me-3"></i><span>Webiste traffic</span>
         </a>
         <a href="<?php run('/logout', $routes)?>" class="list-group-item list-group-item-action py-2 ripple ">
@@ -46,6 +46,7 @@
       </button>
 
       <!-- Brand -->
+
       <a class="navbar-brand" href="#">
         <img
           src="https://static.vecteezy.com/system/resources/previews/009/273/280/non_2x/concept-of-loneliness-and-disappointment-in-love-sad-man-sitting-element-of-the-picture-is-decorated-by-nasa-free-photo.jpg"
@@ -53,6 +54,7 @@
           alt="User Profile"
           loading="lazy"
         />
+        <a> Users name : <strong><?php echo $_SESSION["name"] ?></strong></a>
       </a>
       <!-- Search form -->
       <!-- <form class="d-none d-md-flex input-group w-auto my-auto">

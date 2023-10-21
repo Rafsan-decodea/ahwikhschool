@@ -4,9 +4,10 @@ class DB
 {
 
     // public $server = "localhost";
-    // public $username = "oscschoo_school";
-    // public $password = "05RDVlWpy[c;";
-    // public $dbname = "oscschoo_school";
+    // public $username = "ahwikhsc_datab";
+    // public $password = "@#Rafsan123";
+    // // public $password = "";
+    // public $dbname = "ahwikhsc_db";
 
     public $server = "localhost";
     public $username = "root";

@@ -12,3 +12,5 @@ document.getElementById("login").addEventListener("click", function () {
     // Show the new container
     document.querySelector(".register-container").style.display = "none";
 });
+
+
