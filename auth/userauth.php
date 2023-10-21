@@ -1,7 +1,7 @@
 <?php
-
+//ini_set('display_errors', 1);
 session_start();
-ini_set('display_errors', 1);
+
 include_once '../route/function.php';
 $routes = include_once '../route/routes.php';
 run('/db', $routes);
@@ -21,24 +21,24 @@ if (isset($_POST["submit"])) {
         $_SESSION["name"] = $row["name"];
 
     } else {
-        echo "error";
+
         // header("location:index.php?message=Invalide Username Password");
-        //  run('/checklogin', $routes);
+        run('/checklogin', $routes);
 
     }
 
     if (isset($_SESSION["id"])) // if complete User Authentication
     {
-        //  run('/deshboard', $routes); // redirect This page
+        run('/deshboard', $routes); // redirect This page
         //    unset($_SESSION["id"]);
         //   unset($_SESSION["uid"]);
     } else {
-        echo "error";
-        //  run('/checklogin', $routes);
+
+        run('/checklogin', $routes);
 
     }
 } else {
-    //  run('/checklogin', $routes);
+    run('/checklogin', $routes);
 
     // header("location:index.php?message=Fill Up From Properly");
 }

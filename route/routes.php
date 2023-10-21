@@ -5,6 +5,15 @@ return [
     '/' => function () {
         header("location:/");
     },
+    '/reg' => function () {
+        $index = "auth/reg.php";
+        echo $index;
+
+    },
+    '/regdone' => function () {
+        header("location:/ahwikhschool/index.php?regmessage=Registration Complete Now Login");
+
+    },
     '/checklogin' => function () {
         header("location:/ahwikhschool/index.php?message=Invalide Username Password");
 
@@ -15,9 +24,14 @@ return [
 
     },
     '/deshboard' => function () {
-        header("location:dashboard/index.php");
+        header("location:/ahwikhschool/dashboard/");
     },
     '/db' => function () {
         include $_SERVER['DOCUMENT_ROOT'] . "/ahwikhschool/db/db.php";
     },
+    '/logout' => function () {
+        echo "../logout.php";
+
+    },
+
 ];

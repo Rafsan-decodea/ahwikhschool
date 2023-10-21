@@ -24,8 +24,9 @@ $routes = include 'route/routes.php';
                 <input type="password" id="password" name="password" required>
             </div>
             <a style="color:red"><?php echo htmlspecialchars($_GET["message"], ENT_QUOTES, 'UTF-8'); ?></a>
+            <a style="color:green"><?php echo htmlspecialchars($_GET["regmessage"], ENT_QUOTES, 'UTF-8'); ?></a>
             <br>
-            <button style="color: white;" value="submit" type="submit">Login</button>
+            <button style="color: white;" value="submit" name="submit" type="submit">Login</button>
 
         </form>
         <br>
@@ -34,19 +35,23 @@ $routes = include 'route/routes.php';
     <div class="register-container">
         <h2>User Registration</h2>
         <br>
-        <form action="registration.php" method="post">
+        <form action="<?php run('/reg', $routes);?>" method="post">
             <div class="input-container">
                 <label for="phoneNumber">Phone Number (Bangladesh):</label>
                 <input type="number" id="phoneNumber" name="phoneNumber" placeholder="01XXXXXXXXX" required pattern="01\d{9}">
             </div>
             <div class="input-container">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="input-container">
                 <label for="name">Your Name:</label>
                 <input type="text" id="name" name="name" required>
             </div>
-            <button style="background-color: #007BFF; color: white;" type="submit">Register</button>
+            <button style="background-color: #007BFF; color: white;" name="submit" type="submit">Register</button>
         </form>
         <br>
-        <input class="btn btn-primary" id="login" type="button" value="login"/>
+        <input class="btn btn-primary" id="login" type="button"  value="login"/>
     </div>
 </body>
 </html>
