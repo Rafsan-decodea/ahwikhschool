@@ -108,7 +108,7 @@
                     <span class="badge badge-warning navbar-badge">15</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                    <span class="dropdown-item dropdown-header">15 Notifications</span>
+                    <!-- <span class="dropdown-item dropdown-header">15 Notifications</span>
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item">
                         <i class="fas fa-envelope mr-2"></i> 4 new messages
@@ -125,7 +125,7 @@
                         <span class="float-right text-muted text-sm">2 days</span>
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                    <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a> -->
                 </div>
             </li>
             <li class="nav-item">
@@ -181,7 +181,7 @@
                     data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                    <li class="nav-item menu-open">
+                    <li class="nav-item ">
                         <a href="<?php run('/regform', $routes)?>"
                             class="nav-link <?php echo $current_page == 'regform.php' ? 'active' : null ?>">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -193,11 +193,11 @@
 
                     </li>
                     <li class="nav-item">
-                        <a href="/dashboard/pages/widgets.html" class="nav-link">
+                        <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Widgets
-                                <span class="right badge badge-danger">New</span>
+                                <span class="right badge badge-green">Dev</span>
                             </p>
                         </a>
                     </li>
