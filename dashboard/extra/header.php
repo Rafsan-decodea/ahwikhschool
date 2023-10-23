@@ -1,8 +1,8 @@
 <?php
-//ini_set('display_errors', 1);
+ini_set('display_errors', 1);
 session_start();
-include '../route/function.php';
-$routes = include '../route/routes.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/route/function.php';
+$routes = include $_SERVER['DOCUMENT_ROOT'] . '/route/routes.php';
 run('/db', $routes);
 $db = new DB();
 // This is dashboard
@@ -11,22 +11,41 @@ if (!isset($_SESSION["id"])) {
     run("/", $routes);
 
 }
+function PageName()
+{ // See only Just Active Status
+    return substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1);
+}
+
+$current_page = PageName();
 
 // if ($_SESSION["uid"] == 0) {
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-    <title>Sidebar With Bootstrap</title>
-</head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Dashboard</title>
 
-<body>
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="/dashboard/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="/dashboard/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="/dashboard/plugins/jqvmap/jqvmap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/dashboard/dist/css/adminlte.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="/dashboard/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="/dashboard/plugins/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="/dashboard/plugins/summernote/summernote-bs4.min.css">
+</head>

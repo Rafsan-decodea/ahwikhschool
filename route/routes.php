@@ -10,30 +10,33 @@ return [
         echo $index;
 
     },
+    '/regform' => function () {
+        echo "/dashboard/users/regform.php";
+    },
     '/regfail' => function () {
-        header("location:/ahwikhschool/index.php?regmessage=User Exist ");
+        header("location:/index.php?regmessage=User Exist ");
     },
     '/regdone' => function () {
-        header("location:/ahwikhschool/index.php?regmessage=Registration Complete Now Login");
+        header("location:/index.php?regmessage=Registration Complete Now Login");
 
     },
     '/checklogin' => function () {
-        header("location:/ahwikhschool/index.php?message=Invalide Username Password");
+        header("location:/index.php?message=Invalide Username Password");
 
     },
     '/authuser' => function () {
-        $index = "auth/userauth.php";
+        $index = "/auth/userauth.php";
         echo $index;
 
     },
     '/deshboard' => function () {
-        header("location:/ahwikhschool/dashboard/");
+        header("location:/dashboard/");
     },
     '/db' => function () {
-        include $_SERVER['DOCUMENT_ROOT'] . "/ahwikhschool/db/db.php";
+        include $_SERVER['DOCUMENT_ROOT'] . "/db/db.php";
     },
     '/logout' => function () {
-        echo "../logout.php";
+        echo "/logout.php";
 
     },
 

@@ -1,6 +1,6 @@
 
 <?php include 'extra/nav.php'?>
-<main style="margin-top: 58px;">
-  <div class="container pt-4">asdasaasdadadsasdd</div>
-</main>
+
+ <center><h1>Welcome</h2></center>
+
 <?php include 'extra/fotter.php'?>
