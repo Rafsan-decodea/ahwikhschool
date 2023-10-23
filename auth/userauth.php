@@ -17,7 +17,7 @@ if (isset($_POST["submit"])) {
     if ($_POST["password"] == $row["password"]) {
         $_SESSION["id"] = $row["id"];
         $_SESSION["uid"] = $row["uid"];
-        $_SESSION["phone"] = $row["phonenumber"];
+        $_SESSION["phone"] = $row["phone"];
         $_SESSION["name"] = $row["name"];
 
     } else {

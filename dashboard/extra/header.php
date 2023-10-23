@@ -1,5 +1,5 @@
 <?php
-ini_set('display_errors', 1);
+//ini_set('display_errors', 1);
 session_start();
 include $_SERVER['DOCUMENT_ROOT'] . '/route/function.php';
 $routes = include $_SERVER['DOCUMENT_ROOT'] . '/route/routes.php';

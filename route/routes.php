@@ -1,4 +1,3 @@
-
 <?php
 
 return [
@@ -14,14 +13,14 @@ return [
         echo "/dashboard/users/regform.php";
     },
     '/regfail' => function () {
-        header("location:/index.php?regmessage=User Exist ");
+        header("location:/index.php?regfailedmessage=Already register this Number try another Number");
     },
     '/regdone' => function () {
         header("location:/index.php?regmessage=Registration Complete Now Login");
 
     },
     '/checklogin' => function () {
-        header("location:/index.php?message=Invalide Username Password");
+        header("location:/index.php?message=invalid username or password");
 
     },
     '/authuser' => function () {
