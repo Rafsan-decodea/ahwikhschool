@@ -142,7 +142,6 @@ if ($row["paymentstatus"] == 1) {
                     if (move_uploaded_file($tempFile, $targetFile)) {
 
                         $sql = "UPDATE  users_data set batch='$batch',presentaddress='$presentaddress',parmanentaddress='$parmanentaddress',children=$children,picture='$randomName',currentjob='$currentjob' where uid = $id";
-                        echo $sql;
                         $db->update($sql);
                         $getid = $_SESSION["id"];
                         $sql2 = "UPDATE  users set name='$name' where id=$getid";
