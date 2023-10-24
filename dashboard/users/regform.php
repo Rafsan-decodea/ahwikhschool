@@ -141,15 +141,14 @@ if ($row["paymentstatus"] == 1) {
 
                     if (move_uploaded_file($tempFile, $targetFile)) {
 
-                        $sql = "UPDATE  users_data set batch='$batch',presentaddress='$presentaddress',parmanentaddress='$paemanentaddress',children=$children,picture='$randomName',currentjob='$currentjob' where id = $id";
+                        $sql = "UPDATE  users_data set batch='$batch',presentaddress='$presentaddress',parmanentaddress='$parmanentaddress',children=$children,picture='$randomName',currentjob='$currentjob' where uid = $id";
+                        echo $sql;
                         $db->update($sql);
-
                         $getid = $_SESSION["id"];
                         $sql2 = "UPDATE  users set name='$name' where id=$getid";
                         $db->update($sql2);
                         $_SESSION["name"] = $name;
-                        $_SESSION["profilepic"] = $randomName;
-
+                        echo " <meta http-equiv='refresh' content='0'>";
                     } else {
                         echo "Image upload failed.";
                     }
@@ -310,7 +309,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 $sql2 = "UPDATE  users set name='$name' where id=$getid";
                 $db->update($sql2);
                 $_SESSION["name"] = $name;
-                $_SESSION["profilepic"] = $randomName;
+                echo " <meta http-equiv='refresh' content='0'>";
 
                 ?>
                     <h4 style="color:green">Registration success!!! Please Refresh Page </h4>
