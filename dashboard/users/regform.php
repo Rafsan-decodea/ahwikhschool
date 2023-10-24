@@ -46,7 +46,8 @@ if ($result->num_rows > 0) {
                 <center>
                     <p class='badge text bg-primary'>Done</p>
                 </center>
-            <td> <button class="btn btn-primary">Download Form</button>
+            <td> <a href="<?php run('/userinvoice', $routes)?>"><button class="btn btn-primary">Download
+                        Form</button></a>
             </td>
             <?php }?> <?php
 
@@ -93,7 +94,7 @@ if ($result->num_rows > 0) {
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Bikas Transection ID</label>
                                     <input class="form-control" required name="bikasid" id="emailid"
-                                        aria-describedby="emailHelp" Name placeholder="Bikas Transection id">
+                                        aria-describedby="emailHelp" Name placeholder="Bkash Transection id">
                                 </div>
                                 <button data-bind="" name="submit" class="btn btn-primary">Submit</button>
                             </form>

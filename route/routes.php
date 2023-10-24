@@ -9,6 +9,9 @@ return [
         echo $index;
 
     },
+    '/userinvoice' => function () {
+        echo "/dashboard/invoice/userinvoice.php";
+    },
     '/regform' => function () {
         echo "/dashboard/users/regform.php";
     },
