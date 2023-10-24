@@ -26,6 +26,8 @@
 <script>
 $.widget.bridge('uibutton', $.ui.button)
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
 <!-- Bootstrap 4 -->
 <script src="/dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- ChartJS -->
