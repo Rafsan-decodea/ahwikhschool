@@ -152,31 +152,31 @@ if ($result->num_rows > 0) {
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Name</label>
                                     <input class="form-control" value="<?php echo $_SESSION["name"] ?>" name="name"
-                                        id="emailid" aria-describedby="emailHelp" Name placeholder="Enter email">
+                                        id="emailid" aria-describedby="emailHelp" Name placeholder="Your Name">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">CurrentJob</label>
                                     <input class="form-control" value="<?php echo $row["currentjob"] ?>"
                                         name="currentjob" id="emailid" aria-describedby="emailHelp" Name
-                                        placeholder="Enter email">
+                                        placeholder="Your Job">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Batch</label>
                                     <input class="form-control" value="<?php echo $row["batch"] ?>" name="batch"
-                                        id="emailid" aria-describedby="emailHelp" Name placeholder="Enter email">
+                                        id="emailid" aria-describedby="emailHelp" Name placeholder="Your batch">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Present Address</label>
                                     <input class="form-control" value="<?php echo $row["presentaddress"]; ?>"
                                         name="presentaddress" id="emailid" aria-describedby="emailHelp" Name
-                                        placeholder="Enter email">
+                                        placeholder="Your Present Address">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Parmanent Address</label>
                                     <input class="form-control" value="<?php echo $row["parmanentaddress"]; ?>"
                                         name="parmanentaddress" id="emailid" aria-describedby="emailHelp" Name
-                                        placeholder="Parmanet">
+                                        placeholder="Parmanent Address">
                                 </div>
                                 <div class="mb-3">
                                     <label for="imageInput" class="form-label">Update Image</label>
@@ -191,7 +191,7 @@ if ($result->num_rows > 0) {
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Children</label>
                                     <input class="form-control" value="<?php echo $row["children"]; ?>" name="children"
-                                        id="emailid" aria-describedby="emailHelp" Name placeholder="Parmanet">
+                                        id="emailid" aria-describedby="emailHelp" Name placeholder="Children">
                                 </div>
                                 <button onclick="" data-bind="" name="submit" class="btn btn-primary">update</button>
                             </form>
