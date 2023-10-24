@@ -200,15 +200,15 @@ while ($row = $result->fetch_assoc()) {
                         </a>
 
                     </li>
-                    <!-- <li class="nav-item">
-                        <a href="#" class="nav-link">
+                    <li class="nav-item">
+                        <a href="<?php run('/logout', $routes)?>" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Widgets
-                                <span class="right badge badge-green">Dev</span>
+                            <p style='color:red;'>
+                                Logout
+
                             </p>
                         </a>
-                    </li> -->
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

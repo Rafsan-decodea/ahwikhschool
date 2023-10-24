@@ -7,8 +7,8 @@ $sql = "SELECT * from users_data where uid = $uid ";
 $result = $db->query($sql);
 if ($result->num_rows > 0) {
     ?>
-
-<table class="table">
+<br><br>
+<table class="table table-striped table-bordered table-responsive">
     <thead>
         <tr>
             <th scope="col">id</th>
@@ -20,6 +20,7 @@ if ($result->num_rows > 0) {
             <th scope="col">Children</th>
             <th scope="col">Current job</th>
             <th scope="col">Payment Status</th>
+            <th scope="col">Action/Trasection ID</th>
         </tr>
         <?php
 
@@ -40,13 +41,97 @@ if ($result->num_rows > 0) {
             <td><?php echo $row["parmanentaddress"]; ?></td>
             <td><?php echo $row["children"]; ?></td>
             <td><?php echo $row["currentjob"]; ?></td>
-            <td><?php
-if ($row["paymentstatus"] == 1) {
-        ?>
-                <p class='badge text-bg-primary'> Complete</p>
-            <td><button class="btn btn-primary">Download</button></td>
-            <?php } else {?>
-            <button class='badge pending bg-warning'> Pending</button>
+            <td>
+                <?php if ($row["paymentstatus"] == 2) {?>
+                <center>
+                    <p class='badge text bg-primary'>Done</p>
+                </center>
+            <td> <button class="btn btn-primary">Download Form</button>
+            </td>
+            <?php }?> <?php
+
+        if ($row["paymentstatus"] == 1) {
+            ?> <center>
+                <p class='badge text bg-warning'>Pending</p>
+                <td><?php echo $row["bikasid"]; ?></td>
+            </center>
+
+            <?php }if ($row["paymentstatus"] == 0) {?>
+            <button class="badge makepayment bg-info" id="makePaymentButton" data-toggle="modal"
+                data-target="#paymentModal">Make Payment</button>
+            <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <cernter>
+                                <h5 class="modal-title" id="exampleModalLabel">Payment info</h5>
+                            </cernter>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h3>Bkash_Payment_INFO
+                                জামাল উদ্দিন আহাম্মদ (সহকারী প্রধান শিক্ষক) : <br><br>
+                                <center><mark>01927163143</mark></center>
+                            </h3><br>
+                            <center>
+                                <h4>এই নম্বর এ বিকাশ করে ট্রান্সেকশন আইডি টি সাবমিট করুন করুন। </h4>
+                            </center>
+                            <br>
+                            <h4>
+                                <p style="color:red">উল্লেখ : পেমেন্ট সম্পূর্ণ করার পরে আপনি আপনার ইনফরমেশন আর
+                                    এডিট
+                                    করতে
+                                    পারবেন না </p>
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <form id="payform" method="post" action="/dashboard/users/regform.php"
+                                enctype="multipart/form-data" class="px-md-2">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Bikas Transection ID</label>
+                                    <input class="form-control" required name="bikasid" id="emailid"
+                                        aria-describedby="emailHelp" Name placeholder="Bikas Transection id">
+                                </div>
+                                <button data-bind="" name="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                        <script>
+                        function showConfirmation() {
+                            var isConfirmed = window.confirm("Are you sure you want to submit this form?");
+                            if (isConfirmed) {
+                                var form = document.getElementById("payform");
+                                form.submit();
+                            } else {
+                                // If the user clicks "Cancel" in the confirmation dialog, do nothing or take any other action.
+                            }
+                        }
+                        </script>
+                        <?php
+
+            if (isset($_POST["submit"])) {
+                $getid = $_SESSION["id"];
+                $bikasid = $_POST["bikasid"];
+                $sql = "UPDATE users_data set bikasid='$bikasid',paymentstatus=1 where uid = $getid";
+                $db->insert($sql);
+                echo " <meta http-equiv='refresh' content='0'>";
+            }
+
+            ?>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+            document.getElementById("makePaymentButton").addEventListener("click", function() {
+                $('#paymentModal').modal('show');
+            });
+            </script>
+
             </td>
             <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                     Edit Data
@@ -119,55 +204,57 @@ if ($row["paymentstatus"] == 1) {
             </div>
             <?php
 
-        if (isset($_POST["submit"])) {
+            if (isset($_POST["submit"])) {
 
-            $id = $_SESSION["id"];
-            $name = $_POST["name"];
-            $batch = $_POST["batch"];
-            //$gender = $_POST["gender"];
-            $presentaddress = $_POST["presentaddress"];
-            $parmanentaddress = $_POST["parmanentaddress"];
-            $children = $_POST["children"];
-            $currentjob = $_POST["currentjob"];
-            $randomName = '';
-            $existingImagePath = $_SERVER['DOCUMENT_ROOT'] . '/dashboard/images/' . $row["picture"];
+                $id = $_SESSION["id"];
+                $name = $_POST["name"];
+                $batch = $_POST["batch"];
+                //$gender = $_POST["gender"];
+                $presentaddress = $_POST["presentaddress"];
+                $parmanentaddress = $_POST["parmanentaddress"];
+                $children = $_POST["children"];
+                $currentjob = $_POST["currentjob"];
+                $randomName = '';
+                $existingImagePath = $_SERVER['DOCUMENT_ROOT'] . '/dashboard/images/' . $row["picture"];
 
-            if (file_exists($existingImagePath)) {
-                unlink($existingImagePath);
                 if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-                    $tempFile = $_FILES['image']['tmp_name'];
-                    $randomName = 'image_' . uniqid() . '.jpg';
-                    $targetFile = '../images/' . $randomName;
+                    if (file_exists($existingImagePath)) {
+                        $tempFile = $_FILES['image']['tmp_name'];
+                        $randomName = 'image_' . uniqid() . '.jpg';
+                        $targetFile = '../images/' . $randomName;
+                        if ($_FILES["image"]["size"] > 500000) { // 500 KB in bytes
+                            echo "<a style='color:red'>Sorry, your file is too large. It must be under 500 KB</a>";
+                            exit();
+                        }
+                        if (move_uploaded_file($tempFile, $targetFile)) {
 
-                    if (move_uploaded_file($tempFile, $targetFile)) {
-
-                        $sql = "UPDATE  users_data set batch='$batch',presentaddress='$presentaddress',parmanentaddress='$parmanentaddress',children=$children,picture='$randomName',currentjob='$currentjob' where uid = $id";
-                        $db->update($sql);
-                        $getid = $_SESSION["id"];
-                        $sql2 = "UPDATE  users set name='$name' where id=$getid";
-                        $db->update($sql2);
-                        $_SESSION["name"] = $name;
-                        echo " <meta http-equiv='refresh' content='0'>";
+                            $sql = "UPDATE  users_data set batch='$batch',presentaddress='$presentaddress',parmanentaddress='$parmanentaddress',children=$children,picture='$randomName',currentjob='$currentjob' where uid = $id";
+                            unlink($existingImagePath);
+                            $db->update($sql);
+                            $getid = $_SESSION["id"];
+                            $sql2 = "UPDATE  users set name='$name' where id=$getid";
+                            $db->update($sql2);
+                            $_SESSION["name"] = $name;
+                            echo " <meta http-equiv='refresh' content='0'>";
+                        } else {
+                            echo "Image upload failed.";
+                        }
                     } else {
-                        echo "Image upload failed.";
+                        echo "<a style='color:red'>No image selected or an error occurred.</a>";
                     }
                 } else {
-                    echo "No image selected or an error occurred.";
+                    $getid = $_SESSION["id"];
+                    $sql = "UPDATE  users_data set batch=$batch,presentaddress='$presentaddress',parmanentaddress='$parmanentaddress',children=$children,currentjob='$currentjob' where uid = $getid";
+                    $db->update($sql);
+                    $sql2 = "UPDATE  users set name='$name' where id=$getid";
+                    $db->update($sql2);
+                    $_SESSION["name"] = $name;
+                    echo " <meta http-equiv='refresh' content='0'>";
                 }
-            } else {
-                $getid = $_SESSION["id"];
-                $sql = "UPDATE  users_data set batch=$batch,presentaddress='$presentaddress',parmanentaddress='$parmanentaddress',children=$children,currentjob='$currentjob' where uid = $getid";
-                // echo $sql;
-                $db->update($sql);
-                $sql2 = "UPDATE  users set name='$name' where id=$getid";
-                $db->update($sql2);
-                $_SESSION["name"] = $name;
-                echo " <meta http-equiv='refresh' content='0'>";
+
             }
 
-        }
-
-        ?>
+            ?>
 
         </tr>
         <?php }
@@ -299,7 +386,10 @@ document.addEventListener("DOMContentLoaded", function() {
             $tempFile = $_FILES['image']['tmp_name'];
             $randomName = 'image_' . uniqid() . '.jpg';
             $targetFile = '../images/' . $randomName;
-
+            if ($_FILES["image"]["size"] > 500000) { // 500 KB in bytes
+                echo "<a style='color:red'>Sorry, your file is too large. It must be under 500 KB</a>";
+                exit();
+            }
             if (move_uploaded_file($tempFile, $targetFile)) {
 
                 $sql = "INSERT INTO  users_data (uid,batch,gender,presentaddress,parmanentaddress,children,picture,currentjob,paymentstatus) values ($uid,'$batch','$gender','$presentaddress','$parmanentaddress',$children,'$randomName','$currentjob',0)";
@@ -318,7 +408,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 echo "Image upload failed.";
             }
         } else {
-            echo "No image selected or an error occurred.";
+            echo "<a style='color:red'>No image selected or an error occurred.</a>";
         }
 
     }
