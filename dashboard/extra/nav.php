@@ -247,7 +247,7 @@ if ($_SESSION["uid"] == 0) {
                     <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                     <li class="nav-item ">
-                        <a href="<?php run('/regform', $routes)?>" class="nav-link ">
+                        <a href="" class="nav-link ">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 People History
