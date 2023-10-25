@@ -2,8 +2,6 @@
 
 <div class="wrapper">
 
-
-
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-dark">
         <!-- Left navbar links -->
@@ -152,18 +150,19 @@
         </a>
 
         <!-- Sidebar -->
+        <?php if ($_SESSION["uid"] == 1) {?>
         <div class="sidebar">
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
                     <?php
 $id = $_SESSION["id"];
-$sql = "select picture from users_data  where uid = $id";
-$result = $db->query($sql);
-while ($row = $result->fetch_assoc()) {
-    ?>
+    $sql = "select picture from users_data  where uid = $id";
+    $result = $db->query($sql);
+    while ($row = $result->fetch_assoc()) {
+        ?>
                     <img height="100" width="100" src="<?php if ($row["picture"] == "") {echo "/dashboard/dist/img/user2-160x160.jpg";} else {echo "/dashboard/images/" . $row["picture"];}
-    ?>" style="opacity: .9">
+        ?>" style="opacity: .9">
                     <?php }?>
                 </div>
                 <div class="info">
@@ -213,6 +212,65 @@ while ($row = $result->fetch_assoc()) {
             </nav>
             <!-- /.sidebar-menu -->
         </div>
+        <?php }
+if ($_SESSION["uid"] == 0) {
+    ?>
+        <div class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+
+                    <img height="100" width="100" src="/dashboard/dist/img/user2-160x160.jpg" style="opacity: .9">
+
+                </div>
+                <div class="info">
+                    <a href="#" class="d-block">Admin Panel</a>
+                </div>
+            </div>
+
+            <!-- SidebarSearch Form -->
+            <!-- <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div> -->
+
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                    <li class="nav-item ">
+                        <a href="<?php run('/regform', $routes)?>" class="nav-link ">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                People History
+                                <!-- <i class="right fas fa-angle-left"></i> -->
+                            </p>
+                        </a>
+
+                    </li>
+                    <li class="nav-item <?php echo $current_page == 'regform.php' ? 'active' : null ?>">
+                        <a href="<?php run('/logout', $routes)?>" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p style='color:red;'>
+                                Logout
+
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
+        </div>
+
+        <?php }?>
         <!-- /.sidebar -->
     </aside>
 
