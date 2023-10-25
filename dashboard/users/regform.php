@@ -98,7 +98,7 @@ if ($result->num_rows > 0) {
                                 enctype="multipart/form-data" class="px-md-2">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Bkash Transection ID</label>
-                                    <input class="form-control" required name="bikasid" id="emailid"
+                                    <input class="form-control" required name="bkashid" id="emailid"
                                         aria-describedby="emailHelp" Name placeholder="Bkash Transection id">
                                 </div>
                                 <button data-bind="" name="bikassubmit" class="btn btn-primary">Submit</button>
