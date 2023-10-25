@@ -20,7 +20,7 @@ if (!isset($_SESSION["id"])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Management System</title>
+    <title>Download From</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -77,7 +77,7 @@ while ($row = $result->fetch_assoc()) {
                                     <?php if ($row["paymentstatus"] == 0) {?>
                                     <img height="200" width="200" id="imagePreview" src="/dashboard/invoice/unpaid.jpg"
                                         alt="Image Preview" class="img-fluid border border-primary">
-                                    <?php} if ($row["paymentstatus"] == 1){ ?>
+                                    <?php }if ($row["paymentstatus"] == 1) {?>
                                     <img height="200" width="200" id="imagePreview" src="/dashboard/invoice/pending.jpg"
                                         alt="Image Preview" class="img-fluid border border-primary">
                                     <?php }if ($row["paymentstatus"] == 2) {?>
@@ -94,7 +94,16 @@ while ($row = $result->fetch_assoc()) {
                             <input disabled type="text" id="name" value="<?php echo $_SESSION["name"]; ?>" name="name"
                                 class="form-control" required>
                         </div>
-
+                        <div class="form-group">
+                            <label for="name">Phone:</label>
+                            <input disabled type="text" id="name" value="<?php echo $row["fathername"]; ?>" name="name"
+                                class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Phone:</label>
+                            <input disabled type="text" id="name" value="<?php echo $_SESSION["phone"]; ?>" name="name"
+                                class="form-control" required>
+                        </div>
                         <div class="form-group">
                             <label for="batch">Batch:</label>
                             <input disabled type="text" value="<?php echo $row["batch"]; ?>" id="batch" name="batch"
@@ -123,6 +132,11 @@ while ($row = $result->fetch_assoc()) {
                         <div class="form-group">
                             <label for="children">Children:</label>
                             <input type="number" disabled id="children" value="<?php echo $row["children"]; ?>"
+                                name="children" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="children">Total Payment</label>
+                            <input type="number" disabled id="children" value="<?php echo $row["payamount"]; ?>"
                                 name="children" class="form-control" required>
                         </div>
 
