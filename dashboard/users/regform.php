@@ -1,12 +1,13 @@
 <?php include '../extra/nav.php'?>
 
 <?php
+if ($_SESSION["uid"] == 1) {
 //ini_set('display_errors', 1);
-$uid = $_SESSION["id"];
-$sql = "SELECT * from users_data where uid = $uid ";
-$result = $db->query($sql);
-if ($result->num_rows > 0) {
-    ?>
+    $uid = $_SESSION["id"];
+    $sql = "SELECT * from users_data where uid = $uid ";
+    $result = $db->query($sql);
+    if ($result->num_rows > 0) {
+        ?>
 <br><br>
 <table class="table table-striped table-bordered table-responsive">
     <thead>
@@ -26,10 +27,10 @@ if ($result->num_rows > 0) {
         </tr>
         <?php
 
-    $id = $_SESSION["id"];
-    $sql = "select * from users_data  where uid = $id";
-    $result = $db->query($sql);
-    ?>
+        $id = $_SESSION["id"];
+        $sql = "select * from users_data  where uid = $id";
+        $result = $db->query($sql);
+        ?>
     </thead>
     <tbody>
         <?php while ($row = $result->fetch_assoc()) {?>
@@ -55,8 +56,8 @@ if ($result->num_rows > 0) {
             </td>
             <?php }?> <?php
 
-        if ($row["paymentstatus"] == 1) {
-            ?> <center>
+            if ($row["paymentstatus"] == 1) {
+                ?> <center>
                 <p class='badge text bg-warning'>Pending</p>
                 <td><?php echo $row["bkashid"]; ?></td>
             </center>
@@ -117,15 +118,15 @@ if ($result->num_rows > 0) {
                         </script>
                         <?php
 
-            if (isset($_POST["bikassubmit"])) {
-                $getid = $_SESSION["id"];
-                $bkashid = $_POST["bkashid"];
-                $sql = "UPDATE users_data set bkashid='$bkashid',paymentstatus=1 where uid = $getid";
-                $db->insert($sql);
-                echo " <meta http-equiv='refresh' content='0'>";
-            }
+                if (isset($_POST["bikassubmit"])) {
+                    $getid = $_SESSION["id"];
+                    $bkashid = $_POST["bkashid"];
+                    $sql = "UPDATE users_data set bkashid='$bkashid',paymentstatus=1 where uid = $getid";
+                    $db->insert($sql);
+                    echo " <meta http-equiv='refresh' content='0'>";
+                }
 
-            ?>
+                ?>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
@@ -216,63 +217,63 @@ if ($result->num_rows > 0) {
             </div>
             <?php
 
-            if (isset($_POST["submit"])) {
-                $id = $_SESSION["id"];
-                $name = $_POST["name"];
-                $fathername = $_POST["fathername"];
-                $batch = $_POST["batch"];
-                //$gender = $_POST["gender"];
-                $presentaddress = $_POST["presentaddress"];
-                $parmanentaddress = $_POST["parmanentaddress"];
-                $children = $_POST["children"];
-                $currentjob = $_POST["currentjob"];
-                $payamount = 700 + $children * 400;
-                $randomName = '';
-                $existingImagePath = $_SERVER['DOCUMENT_ROOT'] . '/dashboard/images/' . $row["picture"];
+                if (isset($_POST["submit"])) {
+                    $id = $_SESSION["id"];
+                    $name = $_POST["name"];
+                    $fathername = $_POST["fathername"];
+                    $batch = $_POST["batch"];
+                    //$gender = $_POST["gender"];
+                    $presentaddress = $_POST["presentaddress"];
+                    $parmanentaddress = $_POST["parmanentaddress"];
+                    $children = $_POST["children"];
+                    $currentjob = $_POST["currentjob"];
+                    $payamount = 700 + $children * 400;
+                    $randomName = '';
+                    $existingImagePath = $_SERVER['DOCUMENT_ROOT'] . '/dashboard/images/' . $row["picture"];
 
-                if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-                    if (file_exists($existingImagePath)) {
-                        $tempFile = $_FILES['image']['tmp_name'];
-                        $randomName = 'image_' . uniqid() . '.jpg';
-                        $targetFile = '../images/' . $randomName;
-                        if ($_FILES["image"]["size"] > 500000) { // 500 KB in bytes
-                            echo "<a style='color:red'>Sorry, your file is too large. It must be under 500 KB</a>";
-                            exit();
-                        }
-                        if (move_uploaded_file($tempFile, $targetFile)) {
+                    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+                        if (file_exists($existingImagePath)) {
+                            $tempFile = $_FILES['image']['tmp_name'];
+                            $randomName = 'image_' . uniqid() . '.jpg';
+                            $targetFile = '../images/' . $randomName;
+                            if ($_FILES["image"]["size"] > 500000) { // 500 KB in bytes
+                                echo "<a style='color:red'>Sorry, your file is too large. It must be under 500 KB</a>";
+                                exit();
+                            }
+                            if (move_uploaded_file($tempFile, $targetFile)) {
 
-                            $sql = "UPDATE  users_data set batch='$batch',fathername='$fathername',presentaddress='$presentaddress',parmanentaddress='$parmanentaddress',children=$children,picture='$randomName',currentjob='$currentjob',payamount=$payamount where uid = $id";
-                            unlink($existingImagePath);
-                            $db->update($sql);
-                            $getid = $_SESSION["id"];
-                            $sql2 = "UPDATE  users set name='$name' where id=$getid";
-                            $db->update($sql2);
-                            $_SESSION["name"] = $name;
-                            echo " <meta http-equiv='refresh' content='0'>";
+                                $sql = "UPDATE  users_data set batch='$batch',fathername='$fathername',presentaddress='$presentaddress',parmanentaddress='$parmanentaddress',children=$children,picture='$randomName',currentjob='$currentjob',payamount=$payamount where uid = $id";
+                                unlink($existingImagePath);
+                                $db->update($sql);
+                                $getid = $_SESSION["id"];
+                                $sql2 = "UPDATE  users set name='$name' where id=$getid";
+                                $db->update($sql2);
+                                $_SESSION["name"] = $name;
+                                echo " <meta http-equiv='refresh' content='0'>";
+                            } else {
+                                echo "Image upload failed.";
+                            }
                         } else {
-                            echo "Image upload failed.";
+                            echo "<a style='color:red'>No image selected or an error occurred.</a>";
                         }
                     } else {
-                        echo "<a style='color:red'>No image selected or an error occurred.</a>";
+                        $getid = $_SESSION["id"];
+                        $sql = "UPDATE  users_data set batch='$batch',fathername='$fathername',presentaddress='$presentaddress',parmanentaddress='$parmanentaddress',children=$children,currentjob='$currentjob',payamount=$payamount where uid = $getid";
+                        $db->update($sql);
+                        $sql2 = "UPDATE  users set name='$name' where id=$getid";
+                        $db->update($sql2);
+                        $_SESSION["name"] = $name;
+                        echo " <meta http-equiv='refresh' content='0'>";
+
                     }
-                } else {
-                    $getid = $_SESSION["id"];
-                    $sql = "UPDATE  users_data set batch='$batch',fathername='$fathername',presentaddress='$presentaddress',parmanentaddress='$parmanentaddress',children=$children,currentjob='$currentjob',payamount=$payamount where uid = $getid";
-                    $db->update($sql);
-                    $sql2 = "UPDATE  users set name='$name' where id=$getid";
-                    $db->update($sql2);
-                    $_SESSION["name"] = $name;
-                    echo " <meta http-equiv='refresh' content='0'>";
 
                 }
 
-            }
-
-            ?>
+                ?>
 
         </tr>
         <?php }
-        $result->free();?>
+            $result->free();?>
     </tbody>
 </table>
 <script>
@@ -300,7 +301,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <?php include '../extra/fotter.php';?>
 <?php
 }} else {
-    ?>
+        ?>
 
 <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -391,51 +392,51 @@ document.addEventListener("DOMContentLoaded", function() {
                     </form>
                     <?php
 
-    if (isset($_POST["submit"])) {
+        if (isset($_POST["submit"])) {
 
-        $uid = $_SESSION["id"];
-        $name = $_POST["name"];
-        $fathername = $_POST["fathername"];
-        $batch = $_POST["batch"];
-        $gender = $_POST["gender"];
-        $presentaddress = $_POST["presentaddress"];
-        $parmanentaddress = $_POST["parmanentaddress"];
-        $children = $_POST["children"];
-        $currentjob = $_POST["currentjob"];
-        $payamout = 700 + $children * 400;
-        $randomName = '';
-        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-            $tempFile = $_FILES['image']['tmp_name'];
-            $randomName = 'image_' . uniqid() . '.jpg';
-            $targetFile = '../images/' . $randomName;
-            if ($_FILES["image"]["size"] > 500000) { // 500 KB in bytes
-                echo "<a style='color:red'>Sorry, your file is too large. It must be under 500 KB</a>";
-                exit();
-            }
-            if (move_uploaded_file($tempFile, $targetFile)) {
+            $uid = $_SESSION["id"];
+            $name = $_POST["name"];
+            $fathername = $_POST["fathername"];
+            $batch = $_POST["batch"];
+            $gender = $_POST["gender"];
+            $presentaddress = $_POST["presentaddress"];
+            $parmanentaddress = $_POST["parmanentaddress"];
+            $children = $_POST["children"];
+            $currentjob = $_POST["currentjob"];
+            $payamout = 700 + $children * 400;
+            $randomName = '';
+            if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+                $tempFile = $_FILES['image']['tmp_name'];
+                $randomName = 'image_' . uniqid() . '.jpg';
+                $targetFile = '../images/' . $randomName;
+                if ($_FILES["image"]["size"] > 500000) { // 500 KB in bytes
+                    echo "<a style='color:red'>Sorry, your file is too large. It must be under 500 KB</a>";
+                    exit();
+                }
+                if (move_uploaded_file($tempFile, $targetFile)) {
 
-                $sql = "INSERT INTO  users_data (uid,batch,gender,fathername,presentaddress,parmanentaddress,children,picture,currentjob,payamount,paymentstatus) values ($uid,'$batch','$gender','$fathername','$presentaddress','$parmanentaddress',$children,'$randomName','$currentjob',$payamout,0)";
-                $db->insert($sql);
-                $getid = $_SESSION["id"];
-                $sql2 = "UPDATE  users set name='$name' where id=$getid";
-                $db->update($sql2);
-                $_SESSION["name"] = $name;
-                echo " <meta http-equiv='refresh' content='0'>";
+                    $sql = "INSERT INTO  users_data (uid,batch,gender,fathername,presentaddress,parmanentaddress,children,picture,currentjob,payamount,paymentstatus) values ($uid,'$batch','$gender','$fathername','$presentaddress','$parmanentaddress',$children,'$randomName','$currentjob',$payamout,0)";
+                    $db->insert($sql);
+                    $getid = $_SESSION["id"];
+                    $sql2 = "UPDATE  users set name='$name' where id=$getid";
+                    $db->update($sql2);
+                    $_SESSION["name"] = $name;
+                    echo " <meta http-equiv='refresh' content='0'>";
 
-                ?>
+                    ?>
                     <h4 style="color:green">Registration success!!! Please Refresh Page </h4>
                     <?php
 
+                } else {
+                    echo "Image upload failed.";
+                }
             } else {
-                echo "Image upload failed.";
+                echo "<a style='color:red'>No image selected or an error occurred.</a>";
             }
-        } else {
-            echo "<a style='color:red'>No image selected or an error occurred.</a>";
+
         }
 
-    }
-
-    ?>
+        ?>
                 </div>
             </div>
         </div>
@@ -465,6 +466,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 
 <?php
+}
 }
 ?>
 <?php include '../extra/fotter.php';?>
