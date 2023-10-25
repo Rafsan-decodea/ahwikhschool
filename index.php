@@ -30,12 +30,14 @@ if (isset($_SESSION["id"])) {
             </div>
             <div class="input-container">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password2" name="password" required>
             </div>
             <a style="color:red"><?php echo htmlspecialchars($_GET["message"], ENT_QUOTES, 'UTF-8'); ?></a>
             <a style="color:green"><?php echo htmlspecialchars($_GET["regmessage"], ENT_QUOTES, 'UTF-8'); ?></a>
             <a style="color:red"><?php echo htmlspecialchars($_GET["regfailedmessage"], ENT_QUOTES, 'UTF-8'); ?></a>
             <br>
+            <input type="checkbox" id="showPassword2" onchange="togglePasswordVisibility2()" />
+            <label for="showPassword2">Show Password</label><br>
             <button style="color: white;" value="submit" name="submit" type="submit">Login</button>
 
         </form>
@@ -73,7 +75,6 @@ if (isset($_SESSION["id"])) {
 </body>
 
 </html>
-
 <script src="script.js"></script>
 
 <script>
@@ -105,6 +106,17 @@ function togglePasswordVisibility() {
     } else {
         passwordInput.type = "password";
         confirmPasswordInput.type = "password";
+    }
+}
+
+function togglePasswordVisibility2() {
+    var passwordInput = document.getElementById("password2");
+    var showPasswordCheckbox = document.getElementById("showPassword2");
+    if (showPasswordCheckbox.checked) {
+        passwordInput.type = "text";
+    } else {
+        passwordInput.type = "password";
+
     }
 }
 </script>

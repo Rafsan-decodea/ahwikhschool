@@ -12,11 +12,13 @@
 
 <!-- Main Footer -->
 <footer class="main-footer">
-    <!-- <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
+    <strong>Help Line:</strong>
+    Mamun
+    Lab assistant
+
     <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 3.1.0
-    </div> -->
+        <b> +880 1671-766197</b>
+    </div>
 </footer>
 </div>
 <script src="/dashboard/plugins/jquery/jquery.min.js"></script>

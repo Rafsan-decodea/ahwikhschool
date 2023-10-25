@@ -94,7 +94,7 @@ while ($row = $result->fetch_assoc()) {
                                 class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="name">Phone:</label>
+                            <label for="name">Father Name</label>
                             <input disabled type="text" id="name" value="<?php echo $row["fathername"]; ?>" name="name"
                                 class="form-control" required>
                         </div>
@@ -118,13 +118,13 @@ while ($row = $result->fetch_assoc()) {
                         <div class="form-group">
                             <label for="present_address">Present Address:</label>
 
-                            <input id="present_address" disabled value="<?php echo $row["presentaddress"]; ?>asds"
+                            <input id="present_address" disabled value="<?php echo $row["presentaddress"]; ?>"
                                 name="present_address" class="form-control" rows="3" required />
                         </div>
 
                         <div class="form-group">
                             <label for="permanent_address">Permanent Address:</label>
-                            <input disabled id="permanent_address" value="<?php echo $row["parmanentaddress"]; ?>dff"
+                            <input disabled id="permanent_address" value="<?php echo $row["parmanentaddress"]; ?>"
                                 name="permanent_address" class="form-control" rows="3" required />
                         </div>
 
@@ -135,7 +135,7 @@ while ($row = $result->fetch_assoc()) {
                         </div>
                         <div class="form-group">
                             <label for="children">Total Payment</label>
-                            <input type="number" disabled id="children" value="<?php echo $row["payamount"]; ?>"
+                            <input type="number" disabled id="children" value="<?php echo $row["payamount"]; ?> TK"
                                 name="children" class="form-control" required>
                         </div>
 

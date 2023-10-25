@@ -58,7 +58,7 @@ if ($result->num_rows > 0) {
         if ($row["paymentstatus"] == 1) {
             ?> <center>
                 <p class='badge text bg-warning'>Pending</p>
-                <td><?php echo $row["bikasid"]; ?></td>
+                <td><?php echo $row["bkashid"]; ?></td>
             </center>
 
             <?php }if ($row["paymentstatus"] == 0) {?>
@@ -310,6 +310,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;" alt="Sample photo">
                 <div class="card-body p-4 p-md-5">
                     <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Registration Info</h3>
+                    <h5 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Per Person Cost 700/-</h5>
                     <form method="post" action="/dashboard/users/regform.php" enctype="multipart/form-data"
                         class="px-md-2">
                         <div class="form-outline mb-4">
@@ -360,6 +361,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                         <div class="mb-3">
                             <label for="imageInput" class="form-label">Select Image</label>
+                            <small>(pic size must be with in 500 kb)</small>
                             <input type="file" name="image" class="form-control" id="imageInput" accept="image/*">
                         </div>
                         <div class="mb-3">
