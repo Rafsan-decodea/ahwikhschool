@@ -412,7 +412,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             if (move_uploaded_file($tempFile, $targetFile)) {
 
-                $sql = "INSERT INTO  users_data (uid,batch,fathername,gender,presentaddress,parmanentaddress,children,picture,currentjob,payamount,paymentstatus) values ($uid,'$batch','$fathername','$gender''$presentaddress','$parmanentaddress',$children,'$randomName','$currentjob',$payamout,0)";
+                $sql = "INSERT INTO  users_data (uid,batch,gender,fathername,presentaddress,parmanentaddress,children,picture,currentjob,payamount,paymentstatus) values ($uid,'$batch','$gender','$fathername','$presentaddress','$parmanentaddress',$children,'$randomName','$currentjob',$payamout,0)";
                 $db->insert($sql);
                 $getid = $_SESSION["id"];
                 $sql2 = "UPDATE  users set name='$name' where id=$getid";

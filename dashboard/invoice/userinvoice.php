@@ -1,7 +1,6 @@
 <?php
 ini_set('display_errors', 1);
-require_once 'vendor/autoload.php';
-//use Dompdf\Dompdf;
+
 session_start();
 include $_SERVER['DOCUMENT_ROOT'] . '/route/function.php';
 $routes = include $_SERVER['DOCUMENT_ROOT'] . '/route/routes.php';
