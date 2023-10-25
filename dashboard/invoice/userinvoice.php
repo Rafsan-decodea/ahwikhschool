@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', 1);
 require_once 'vendor/autoload.php';
 //use Dompdf\Dompdf;
 session_start();
@@ -47,6 +48,13 @@ if (!isset($_SESSION["id"])) {
 </head>
 
 <body>
+    <?php
+
+$id = $_SESSION["id"];
+$sql = "select * from users_data  where uid = $id";
+$result = $db->query($sql);
+while ($row = $result->fetch_assoc()) {
+    ?>
 
     <div class="container ">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -55,138 +63,92 @@ if (!isset($_SESSION["id"])) {
                     <img src="logo.png" class="" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
                         alt="Sample photo">
                     <div class="card-body p-4 p-md-5">
-                        <!-- <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Registration Info</h3> -->
-                        <div class="my-5 page">
-                            <div class="p-5">
-                                <!-- <section class="top-content bb d-flex justify-content-between">
-                                    <div class="logo">
-
-                                    </div>
-                                    <div class="top-left">
-                                        <div class="graphic-path">
-                                            <p>Invoice</p>
-                                        </div>
-                                        <div class="position-relative">
-                                            <p>Invoice No. <span>XXXX</span></p>
-                                        </div>
-                                    </div>
-                                </section> -->
-
-                                <section class="store-user mt-5">
-                                    <div class="col-10">
-                                        <div class="row bb pb-3">
-                                            <div class="col-7">
-                                                <p>Supplier,</p>
-                                                <h2>Your Store Name</h2>
-                                                <p class="address"> 777 Brockton Avenue, <br> Abington MA 2351,
-                                                    <br>Vestavia Hills AL
-                                                </p>
-                                                <div class="txn mt-2">TXN: XXXXXXX</div>
-                                            </div>
-                                            <div class="col-5">
-                                                <p>Client,</p>
-                                                <h2>Sabur Ali</h2>
-                                                <p class="address"> 777 Brockton Avenue, <br> Abington MA 2351,
-                                                    <br>Vestavia Hills AL
-                                                </p>
-                                                <div class="txn mt-2">TXN: XXXXXXX</div>
-                                            </div>
-                                        </div>
-                                        <div class="row extra-info pt-3">
-                                            <div class="col-7">
-                                                <p>Payment Method: <span>bKash</span></p>
-                                                <p>Order Number: <span>#868</span></p>
-                                            </div>
-                                            <div class="col-5">
-                                                <p>Deliver Date: <span>10-04.2021</span></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
-
-                                <section class="balance-info">
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <p class="m-0 font-weight-bold"> Note: </p>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In delectus,
-                                                adipisci vero est dolore praesentium.</p>
-                                        </div>
-                                        <div class="col-4">
-                                            <table class="table border-0 table-hover">
-                                                <tr>
-                                                    <td>Sub Total:</td>
-                                                    <td>800$</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Tax:</td>
-                                                    <td>15$</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Deliver:</td>
-                                                    <td>10$</td>
-                                                </tr>
-                                                <tfoot>
-                                                    <tr>
-                                                        <td>Total:</td>
-                                                        <td>825$</td>
-                                                    </tr>
-                                                </tfoot>
-                                            </table>
-
-                                            <!-- Signature -->
-                                            <div class="col-12">
-                                                <img src="signature.png" class="img-fluid" alt="">
-                                                <p class="text-center m-0"> Director Signature </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
-
-                                <!-- Cart BG -->
-                                <img src="cart.jpg" class="img-fluid cart-bg" alt="">
-
-                                <footer>
-                                    <hr>
-                                    <p class="m-0 text-center">
-                                        View THis Invoice Online At - <a href="#!"> invoice/saburbd.com/#868 </a>
-                                    </p>
-                                    <div class="social pt-3">
-                                        <span class="pr-2">
-                                            <i class="fas fa-mobile-alt"></i>
-                                            <span>0123456789</span>
-                                        </span>
-                                        <span class="pr-2">
-                                            <i class="fas fa-envelope"></i>
-                                            <span>me@saburali.com</span>
-                                        </span>
-                                        <span class="pr-2">
-                                            <i class="fab fa-facebook-f"></i>
-                                            <span>/sabur.7264</span>
-                                        </span>
-                                        <span class="pr-2">
-                                            <i class="fab fa-youtube"></i>
-                                            <span>/abdussabur</span>
-                                        </span>
-                                        <span class="pr-2">
-                                            <i class="fab fa-github"></i>
-                                            <span>/example</span>
-                                        </span>
-                                    </div>
-                                </footer>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!-- Left div -->
+                                <div class="mb-3 text-left">
+                                    <img height="150" width="120" id="imagePreview"
+                                        src="/dashboard/images/<?php echo $row["picture"]; ?>" alt="Image Preview"
+                                        class="img-fluid border border-primary">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3 text-right">
+                                    <?php if ($row["paymentstatus"] == 0) {?>
+                                    <img height="200" width="200" id="imagePreview" src="/dashboard/invoice/unpaid.jpg"
+                                        alt="Image Preview" class="img-fluid border border-primary">
+                                    <?php} if ($row["paymentstatus"] == 1){ ?>
+                                    <img height="200" width="200" id="imagePreview" src="/dashboard/invoice/pending.jpg"
+                                        alt="Image Preview" class="img-fluid border border-primary">
+                                    <?php }if ($row["paymentstatus"] == 2) {?>
+                                    <img height="200" width="200" id="imagePreview" src="/dashboard/invoice/paid.jpg"
+                                        alt="Image Preview" class="img-fluid border border-primary">
+                                    <?php }?>
+                                </div>
                             </div>
                         </div>
+                        <!-- <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Registration Info</h3> -->
 
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input disabled type="text" id="name" value="<?php echo $_SESSION["name"]; ?>" name="name"
+                                class="form-control" required>
+                        </div>
 
+                        <div class="form-group">
+                            <label for="batch">Batch:</label>
+                            <input disabled type="text" value="<?php echo $row["batch"]; ?>" id="batch" name="batch"
+                                class="form-control" required>
+                        </div>
 
+                        <div class="form-group">
+                            <label for="gender">Gender:</label>
+                            <input disabled type="text" value="<?php echo $row["gender"]; ?>" id="batch" name="batch"
+                                class="form-control" required>
+                        </div>
 
+                        <div class="form-group">
+                            <label for="present_address">Present Address:</label>
+
+                            <input id="present_address" disabled value="<?php echo $row["presentaddress"]; ?>asds"
+                                name="present_address" class="form-control" rows="3" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="permanent_address">Permanent Address:</label>
+                            <input disabled id="permanent_address" value="<?php echo $row["parmanentaddress"]; ?>dff"
+                                name="permanent_address" class="form-control" rows="3" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="children">Children:</label>
+                            <input type="number" disabled id="children" value="<?php echo $row["children"]; ?>"
+                                name="children" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="current_status">Current job:</label>
+                            <input type="text" disabled id="children" value="<?php echo $row["currentjob"]; ?>"
+                                name="children" class="form-control" required>
+                        </div>
+
+                        <button onClick="window.print()" class="btn btn-primary">Print PDF</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <?php }
+$result->free();?>
 
-
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('#printButton').click(function() {
+            window.frames[0].print(); // This triggers the print dialog for the iframe
+        });
+    });
+    </script>
 
 
 </body>
