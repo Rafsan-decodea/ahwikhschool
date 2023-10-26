@@ -47,10 +47,74 @@ if ($_SESSION["uid"] == 1) {
             <td><?php echo $row["currentjob"]; ?></td>
             <td><?php echo $row["payamount"]; ?></td>
             <td>
-                <?php if ($row["paymentstatus"] == 2) {?>
+                <?php if ($row["paymentstatus"] == 3) {?>
                 <center>
-                    <p class='badge text bg-primary'>Done</p>
+                    <p class='badge text bg-danger'>Reject</p>
                 </center>
+            <td> <button class="btn btn-primary " id="rejectresone" data-toggle="modal" data-target="#rejectresone">See
+                    Resone</button>
+            </td>
+            <div class="modal fade" id="rejectresone" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <cernter>
+                                <h5 class="modal-title" id="exampleModalLabel">Payment Rejected</h5>
+                            </cernter>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h3>Bkash_Payment_Reject_Resone
+                            </h3><br>
+                            <center>
+                                <h4><?php echo $row["rejectreson"]; ?></h4>
+                            </center>
+                            <br>
+
+                        </div>
+                        <div class="modal-body">
+                            <form id="payform" method="post" action="/dashboard/users/regform.php"
+                                enctype="multipart/form-data" class="px-md-2">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">ReSubmit Bkash Transection ID</label>
+                                    <input class="form-control" required name="bkashid" id="emailid"
+                                        aria-describedby="emailHelp" Name placeholder="Bkash Transection id">
+                                </div>
+                                <button data-bind="" name="bikassubmit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+
+                        <?php
+
+            if (isset($_POST["bikassubmit"])) {
+                $getid = $_SESSION["id"];
+                $bkashid = $_POST["bkashid"];
+                $sql = "UPDATE users_data set bkashid='$bkashid',paymentstatus=1 where uid = $getid";
+                $db->insert($sql);
+                echo " <meta http-equiv='refresh' content='0'>";
+            }
+
+            ?>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+            document.getElementById("makePaymentButton").addEventListener("click", function() {
+                $('#paymentModal').modal('show');
+            });
+            </script>
+            <?php }?>
+
+            <?php if ($row["paymentstatus"] == 2) {?>
+            <center>
+                <p class='badge text bg-primary'>Done</p>
+            </center>
             <td> <a href="<?php run('/userinvoice', $routes)?>"><button class="btn btn-primary">Download
                         Form</button></a>
             </td>
