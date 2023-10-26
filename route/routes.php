@@ -15,6 +15,12 @@ return [
     '/regform' => function () {
         echo "/dashboard/users/regform.php";
     },
+    '/peoplehistory' => function () {
+        echo "/dashboard/admin/peoplehistory.php";
+    },
+    '/paymentinfo' => function () {
+        echo "/dashboard/admin/paymentinformation.php";
+    },
     '/regfail' => function () {
         header("location:/index.php?regfailedmessage=Already register this Number try another Number");
     },

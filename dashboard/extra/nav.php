@@ -247,10 +247,22 @@ if ($_SESSION["uid"] == 0) {
                     <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                     <li class="nav-item ">
-                        <a href="" class="nav-link ">
+                        <a href="<?php run('/peoplehistory', $routes)?>"
+                            class="nav-link <?php echo $current_page == 'peoplehistory.php' ? 'active' : null ?> ">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 People History
+                                <!-- <i class="right fas fa-angle-left"></i> -->
+                            </p>
+                        </a>
+
+                    </li>
+                    <li class="nav-item ">
+                        <a href="<?php run('/paymentinfo', $routes)?>"
+                            class="nav-link <?php echo $current_page == 'paymentinformation.php' ? 'active' : null ?> ">
+                            <i class="nav-icon fas fa-dollar-sign"></i>
+                            <p>
+                                Payment info
                                 <!-- <i class="right fas fa-angle-left"></i> -->
                             </p>
                         </a>
