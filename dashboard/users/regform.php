@@ -162,6 +162,11 @@ if ($_SESSION["uid"] == 1) {
                             <form id="payform" method="post" action="/dashboard/users/regform.php"
                                 enctype="multipart/form-data" class="px-md-2">
                                 <div class="form-group">
+                                    <label for="exampleInputEmail1">Bkash Number</label>
+                                    <input class="form-control" required type="number" name="bkashnumber" id="emailid"
+                                        aria-describedby="emailHelp" Name placeholder="Bkash number">
+                                </div>
+                                <div class="form-group">
                                     <label for="exampleInputEmail1">Bkash Transection ID</label>
                                     <input class="form-control" required name="bkashid" id="emailid"
                                         aria-describedby="emailHelp" Name placeholder="Bkash Transection id">
@@ -185,7 +190,8 @@ if ($_SESSION["uid"] == 1) {
                 if (isset($_POST["bikassubmit"])) {
                     $getid = $_SESSION["id"];
                     $bkashid = $_POST["bkashid"];
-                    $sql = "UPDATE users_data set bkashid='$bkashid',paymentstatus=1 where uid = $getid";
+                    $bkashnumber = $_POST["bkashnumber"];
+                    $sql = "UPDATE users_data set bkashid='$bkashid',bikasnumber='$bkashnumber',paymentstatus=1 where uid = $getid";
                     $db->insert($sql);
                     echo " <meta http-equiv='refresh' content='0'>";
                 }

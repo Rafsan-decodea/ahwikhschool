@@ -123,7 +123,7 @@ while ($row = $result->fetch_assoc()) {
                         </div>
 
                         <div class="form-group">
-                            <label for="permanent_address">Permanent Address:</label>
+                            <label for="permanent_address">Parmanent Address:</label>
                             <input disabled id="permanent_address" value="<?php echo $row["parmanentaddress"]; ?>"
                                 name="permanent_address" class="form-control" rows="3" required />
                         </div>
@@ -135,7 +135,7 @@ while ($row = $result->fetch_assoc()) {
                         </div>
                         <div class="form-group">
                             <label for="children">Total Payment</label>
-                            <input type="number" disabled id="children" value="<?php echo $row["payamount"]; ?> TK"
+                            <input type="text" disabled id="children" value="<?php echo $row["payamount"]; ?> TK"
                                 name="children" class="form-control" required>
                         </div>
 

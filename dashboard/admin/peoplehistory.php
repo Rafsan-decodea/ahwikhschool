@@ -11,6 +11,7 @@ if ($_SESSION["uid"] == 0) {
             <th scope="col">Count</th>
             <th scope="col">picture</th>
             <th scope="col">Name</th>
+            <th scope="col">Phone</th>
             <th scope="col">Father Name</th>
             <th scope="col">gender</th>
             <th scope="col">batch</th>
@@ -34,6 +35,10 @@ if ($_SESSION["uid"] == 0) {
                     class="rounded-profile"></td>
             <td><?php $id = $row["uid"];
         $data = $db->query("select name from users where id = $id ");while ($row1 = $data->fetch_assoc()) {echo $row1["name"];}
+        $data->free();?>
+            </td>
+            <td><?php $id = $row["uid"];
+        $data = $db->query("select phone from users where id = $id ");while ($row1 = $data->fetch_assoc()) {echo $row1["phone"];}
         $data->free();?>
             </td>
             <td><?php echo $row["fathername"] ?></td>

@@ -24,6 +24,7 @@ if ($_SESSION["uid"] == 0) {
             <th scope="col">Count</th>
             <th scope="col">picture</th>
             <th scope="col">Name</th>
+            <th scope="col">Phone</th>
             <th scope="col">batch</th>
             <th scope="col">Children</th>
             <th scope="col">Total Pay</th>
@@ -47,6 +48,9 @@ if ($_SESSION["uid"] == 0) {
         $data = $db->query("select name from users where id = $id ");while ($row1 = $data->fetch_assoc()) {echo $row1["name"];}
         $data->free();?>
             </td>
+            <td><?php $id = $row["uid"];
+        $data = $db->query("select phone from users where id = $id ");while ($row1 = $data->fetch_assoc()) {echo $row1["phone"];}
+        $data->free();?>
             <td><?php echo $row["batch"] ?></td>
             <td><?php echo $row["children"] ?></td>
             <td><?php echo $row["payamount"] ?></td>
@@ -64,6 +68,8 @@ if ($_SESSION["uid"] == 0) {
             <th scope="col">Count</th>
             <th scope="col">picture</th>
             <th scope="col">Name</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Bkash</th>
             <th scope="col">batch</th>
             <th scope="col">Children</th>
             <th scope="col">Total Pay</th>
@@ -88,6 +94,10 @@ if ($_SESSION["uid"] == 0) {
         $data = $db->query("select name from users where id = $id ");while ($row1 = $data->fetch_assoc()) {echo $row1["name"];}
         $data->free();?>
             </td>
+            <td><?php $id = $row["uid"];
+        $data = $db->query("select phone from users where id = $id ");while ($row1 = $data->fetch_assoc()) {echo $row1["phone"];}
+        $data->free();?>
+            <td><?php echo $row["bikasnumber"] ?></td>
             <td><?php echo $row["batch"] ?></td>
             <td><?php echo $row["children"] ?></td>
             <td><?php echo $row["payamount"] ?></td>
@@ -170,6 +180,7 @@ if (isset($_POST["submit"])) {
             <th scope="col">Count</th>
             <th scope="col">picture</th>
             <th scope="col">Name</th>
+            <th scope="col">Phone</th>
             <th scope="col">batch</th>
             <th scope="col">Children</th>
             <th scope="col">Total Pay</th>
@@ -194,6 +205,9 @@ if (isset($_POST["submit"])) {
         $data = $db->query("select name from users where id = $id ");while ($row1 = $data->fetch_assoc()) {echo $row1["name"];}
         $data->free();?>
             </td>
+            <td><?php $id = $row["uid"];
+        $data = $db->query("select phone from users where id = $id ");while ($row1 = $data->fetch_assoc()) {echo $row1["phone"];}
+        $data->free();?>
             <td><?php echo $row["batch"] ?></td>
             <td><?php echo $row["children"] ?></td>
             <td><?php echo $row["payamount"] ?></td>

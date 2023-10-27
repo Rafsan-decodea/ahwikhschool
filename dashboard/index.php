@@ -15,7 +15,7 @@ $row4 = $result4->fetch_assoc();
 $sql5 = "SELECT COUNT(*) AS countsubmit FROM users_data ";
 $result5 = $db->query($sql5);
 $row5 = $result5->fetch_assoc();
-$sql = "SELECT COUNT(*) AS total FROM users";
+$sql = "SELECT COUNT(*) AS total FROM users where uid = 1";
 $result = $db->query($sql);
 $row = $result->fetch_assoc();
 
