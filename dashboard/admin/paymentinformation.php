@@ -6,7 +6,15 @@ if ($_SESSION["uid"] == 0) {
     // $uid = $_SESSION["id"];
     // $sql = "SELECT * from users_data where uid = $uid ";
     // $result = $db->query($sql);
-
+    $sql2 = "SELECT COUNT(*) AS countpayment FROM users_data WHERE paymentstatus = 2 ";
+    $result2 = $db->query($sql2);
+    $row2 = $result2->fetch_assoc();
+    $sql3 = "SELECT COUNT(*) AS countpendingpayment FROM users_data WHERE paymentstatus = 1";
+    $result3 = $db->query($sql3);
+    $row3 = $result3->fetch_assoc();
+    $sql4 = "SELECT COUNT(*) AS reject FROM users_data WHERE paymentstatus = 3";
+    $result4 = $db->query($sql4);
+    $row4 = $result4->fetch_assoc();
     ?>
 <br><br>
 <style>
@@ -14,9 +22,15 @@ if ($_SESSION["uid"] == 0) {
     display: none;
 }
 </style>
-<button id="pendingpaymentbutton" class="btn btn-warning">Pending Payment</button>
-<button id="approvetablebutton" class="btn btn-success">Approve</button>
-<button id="rejecttablebutton" class="btn btn-danger">Reject</button>
+<button id="pendingpaymentbutton" class="btn btn-warning">Pending Payment
+    <span class="badge badge-danger"><?php echo $row3["countpendingpayment"] ?></span>
+</button>
+<button id="approvetablebutton" class="btn btn-success">Approve
+    <span class="badge badge-danger"><?php echo $row2["countpayment"] ?></span>
+</button>
+<button id="rejecttablebutton" class="btn btn-danger">Reject
+    <span class="badge badge-warning"><?php echo $row4["reject"] ?></span>
+</button>
 <br><br>
 <table id="approvetable" class="table hidden table-bordered table-responsive">
     <thead>
