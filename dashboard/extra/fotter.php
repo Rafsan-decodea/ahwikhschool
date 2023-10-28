@@ -13,12 +13,12 @@
 <!-- Main Footer -->
 <footer class="main-footer">
     <strong>Help Line:</strong>
-    Mamun
-    Lab assistant
+    Name: Abdullah Al Mamun(Computer Lab Operator) : +880 1671-766197
 
-    <div class="float-right d-none d-sm-inline-block">
+
+    <!-- <div class="float-right d-none d-sm-inline-block">
         <b> +880 1671-766197</b>
-    </div>
+    </div> -->
 </footer>
 </div>
 <script src="/dashboard/plugins/jquery/jquery.min.js"></script>

@@ -42,6 +42,7 @@ if ($_SESSION["uid"] == 0) {
             <th scope="col">batch</th>
             <th scope="col">Children</th>
             <th scope="col">Total Pay</th>
+            <th scope="col">Bkash Number</th>
             <th scope="col">Bkash id</th>
             <th scope="col">Status</th>
 
@@ -68,6 +69,7 @@ if ($_SESSION["uid"] == 0) {
             <td><?php echo $row["batch"] ?></td>
             <td><?php echo $row["children"] ?></td>
             <td><?php echo $row["payamount"] ?></td>
+            <td><?php echo $row["bikasnumber"] ?></td>
             <td><?php echo $row["bkashid"] ?></td>
             <td>
                 <p class='badge text bg-primary'>Done</p>
@@ -83,10 +85,10 @@ if ($_SESSION["uid"] == 0) {
             <th scope="col">picture</th>
             <th scope="col">Name</th>
             <th scope="col">Phone</th>
-            <th scope="col">Bkash</th>
             <th scope="col">batch</th>
             <th scope="col">Children</th>
             <th scope="col">Total Pay</th>
+            <th scope="col">Bkash</th>
             <th scope="col">Bkash id</th>
             <th scope="col">Status</th>
             <th scope="col">action</th>
@@ -111,28 +113,50 @@ if ($_SESSION["uid"] == 0) {
             <td><?php $id = $row["uid"];
         $data = $db->query("select phone from users where id = $id ");while ($row1 = $data->fetch_assoc()) {echo $row1["phone"];}
         $data->free();?>
-            <td><?php echo $row["bikasnumber"] ?></td>
             <td><?php echo $row["batch"] ?></td>
             <td><?php echo $row["children"] ?></td>
             <td><?php echo $row["payamount"] ?></td>
+            <td><?php echo $row["bikasnumber"] ?></td>
             <td><?php echo $row["bkashid"] ?></td>
             <td>
                 <p class='badge text bg-warning'>Pending</p>
             </td>
             <td>
-                <form method="post" action="<?php run('/paymentinfo', $routes)?>">
-                    <button name="submit" class="btn btn-primary">Make Done</button>
-                </form><br>
+                <button type="button" class="btn btn-success" data-target="#deleteModal" data-toggle="modal">Make Done
+                    Item</button><br><br>
+                <div class="modal fade" id="deleteModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Done Payment</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to Make Payment Done
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <form method="post" action="<?php run('/paymentinfo', $routes)?>">
+                                    <input type="hidden" name="id" value="<?php echo $row["id"]; ?>">
+                                    <button name="submit" class="btn btn-primary">Yes</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <?php
 if (isset($_POST["submit"])) {
-            $id = $row["uid"];
-            $sql = "UPDATE users_data set paymentstatus=2 where uid = $id ";
+            $id = $_POST["id"];
+            $sql = "UPDATE users_data set paymentstatus=2 where id = $id ";
             $db->insert($sql);
             echo " <meta http-equiv='refresh' content='0'>";
         }
         ?>
                 <button class="btn btn-danger" id="makePaymentButton" data-toggle="modal"
-                    data-target="#rejectModal">Make reject</button>
+                    data-target="#rejectModal">Make
+                    reject</button>
                 <div class="modal fade" id="rejectModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -151,6 +175,7 @@ if (isset($_POST["submit"])) {
                                 </h3>
                                 <form id="payform" method="post" action="<?php run('/paymentinfo', $routes)?>"
                                     enctype="multipart/form-data" class="px-md-2">
+                                    <input type="hidden" name="id" value="<?php echo $row["id"]; ?>">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Tell resone</label>
                                         <textarea class="form-control" required name="whatisreason" id="emailid"
@@ -167,9 +192,9 @@ if (isset($_POST["submit"])) {
                             <?php
 
         if (isset($_POST["rejectsubmit"])) {
-            $id = $row["uid"];
+            $id = $_POST["id"];
             $resone = $_POST["whatisreason"];
-            $sql = "UPDATE users_data set paymentstatus=3,rejectreson='$resone' where uid = $id";
+            $sql = "UPDATE users_data set paymentstatus=3,rejectreson='$resone' where id = $id";
             $db->update($sql);
             echo " <meta http-equiv='refresh' content='0'>";
         }
@@ -198,6 +223,7 @@ if (isset($_POST["submit"])) {
             <th scope="col">batch</th>
             <th scope="col">Children</th>
             <th scope="col">Total Pay</th>
+            <th scope="col">Bkash Number</th>
             <th scope="col">Bkash id</th>
             <th scope="col">Status</th>
             <th scope="col">Resone</th>
@@ -225,6 +251,7 @@ if (isset($_POST["submit"])) {
             <td><?php echo $row["batch"] ?></td>
             <td><?php echo $row["children"] ?></td>
             <td><?php echo $row["payamount"] ?></td>
+            <td><?php echo $row["bikasnumber"] ?></td>
             <td><?php echo $row["bkashid"] ?></td>
             <td>
                 <p class='badge text bg-danger'>Reject</p>
